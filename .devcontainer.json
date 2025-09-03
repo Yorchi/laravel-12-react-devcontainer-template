@@ -1,0 +1,160 @@
+{
+	"name": "Identia - Environment",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "php",
+	"runServices": ["nginx", "mysql", "redis", "mailcatcher"],
+	"workspaceFolder": "/var/www/html",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-json",
+				"bmewburn.vscode-intelephense-client",
+				"onecentlin.laravel-blade",
+				"onecentlin.laravel5-snippets",
+				"onecentlin.laravel-extension-pack",
+				"ms-vscode.vscode-php-debug",
+				"bradlc.vscode-tailwindcss",
+				"esbenp.prettier-vscode",
+				"ms-vscode.vscode-eslint",
+				"ms-vscode.vscode-typescript-next",
+				"ms-vscode.vscode-php-pack",
+				"ms-vscode.vscode-php-intellisense",
+				"neilbrayfield.php-docblocker",
+				"junstyle.php-cs-fixer",
+				"ms-vscode.vscode-php-debug",
+				"ms-vscode.vscode-php-pack",
+				"ms-vscode.vscode-php-intellisense",
+				"neilbrayfield.php-docblocker",
+				"junstyle.php-cs-fixer"
+			],
+			"settings": {
+				"php.validate.executablePath": "/usr/local/bin/php",
+				"php.suggest.basic": false,
+				"intelephense.files.maxSize": 5000000,
+				"intelephense.environment.phpVersion": "7.4.0",
+				"intelephense.stubs": [
+					"apache",
+					"bcmath",
+					"bz2",
+					"calendar",
+					"com_dotnet",
+					"Core",
+					"ctype",
+					"curl",
+					"date",
+					"dba",
+					"dom",
+					"enchant",
+					"exif",
+					"FFI",
+					"fileinfo",
+					"filter",
+					"fpm",
+					"ftp",
+					"gd",
+					"gettext",
+					"gmp",
+					"hash",
+					"iconv",
+					"imap",
+					"interbase",
+					"intl",
+					"json",
+					"ldap",
+					"libxml",
+					"mbstring",
+					"meta",
+					"mysqli",
+					"oci8",
+					"odbc",
+					"openssl",
+					"pcntl",
+					"pcre",
+					"PDO",
+					"pdo_ibm",
+					"pdo_mysql",
+					"pdo_pgsql",
+					"pdo_sqlite",
+					"pgsql",
+					"Phar",
+					"posix",
+					"pspell",
+					"readline",
+					"Reflection",
+					"session",
+					"shmop",
+					"SimpleXML",
+					"snmp",
+					"soap",
+					"sockets",
+					"sodium",
+					"SPL",
+					"sqlite3",
+					"standard",
+					"superglobals",
+					"sysvmsg",
+					"sysvsem",
+					"sysvshm",
+					"tidy",
+					"tokenizer",
+					"xml",
+					"xmlreader",
+					"xmlrpc",
+					"xmlwriter",
+					"xsl",
+					"Zend OPcache",
+					"zip",
+					"zlib",
+					"wordpress",
+					"laravel"
+				],
+				"files.associations": {
+					"*.blade.php": "blade"
+				},
+				"emmet.includeLanguages": {
+					"blade": "html"
+				},
+				"tailwindCSS.includeLanguages": {
+					"blade": "html",
+					"php": "html"
+				},
+				"tailwindCSS.experimental.classRegex": [
+					"class\\s*=\\s*[\"']([^\"']*)[\"']",
+					"className\\s*=\\s*[\"']([^\"']*)[\"']"
+				]
+			}
+		}
+	},
+	"forwardPorts": [8080, 9000, 3300, 6379, 1080, 1025],
+	"portsAttributes": {
+		"8080": {
+			"label": "Laravel App",
+			"onAutoForward": "notify"
+		},
+		"9000": {
+			"label": "PHP-FPM",
+			"onAutoForward": "silent"
+		},
+		"3300": {
+			"label": "MySQL",
+			"onAutoForward": "silent"
+		},
+		"6379": {
+			"label": "Redis",
+			"onAutoForward": "silent"
+		},
+		"1080": {
+			"label": "Mailcatcher",
+			"onAutoForward": "silent"
+		},
+		"1025": {
+			"label": "Mailcatcher",
+			"onAutoForward": "silent"
+		}
+	},
+	"postCreateCommand": "composer install && npm install && php artisan key:generate && php artisan migrate --seed",
+	"features": {
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	}
+}
